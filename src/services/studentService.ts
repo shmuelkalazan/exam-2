@@ -1,42 +1,42 @@
-// import { IPost } from "../models/teacherModel";
-// import { UserModel } from "../models/studentModel";
+import bcrypt from 'bcrypt'
+import { IStudent, StudentModel } from '../models/studentModel'
+import { ITeacher, TeacherModel } from '../models/teacherModel'
 
-// const createUser = async (user: any): Promise<any | void> => {
-//   try {
-//     if (!user.user_name || !user.email) {
-//       return "please enter user name and email";
-//     }
-//     const dbUser: any | undefined = new UserModel({
-//       user_name: user.user_name,
-//       email: user.email,
-//       profile: {
-//         bio: user.profile.bio || "",
-//         socialLinks: user.profile.socialLinks || "",
-//       },
-//     });
-//     await dbUser.save();
-//     console.log("user saved successfully");
-//     return dbUser;
-//   } catch (err) {
-//     console.log(err);
-//     return err;
-//   }
-// };
+const createStudent = async (student:IStudent):Promise<any | void> =>{
+    try {
+        console.log(student)
+        if(!student.user_name || !student.email || !student.password|| !student.class_name){
+            return "All fields must be complete"
+        }
+        try {
+            const className:ITeacher|undefined|any = await TeacherModel.find({ class_name: student.class_name }); 
+            console.log("class name "+className[0].class_name)
+            
+        } catch (error) {
+            
+            return "class name is not finded"        
+        }
+    //     if (!className[0].class_name){
+    //     }
+    //    return className.class_name
+     
+        const hashedPassword = await bcrypt.hash(student.password,10)
+        const dbStudent = new StudentModel({
+            user_name:student.user_name,
+            email:student.email,
+            password:hashedPassword,
+            class_name:student.class_name
+        })
+        console.log(dbStudent)
+        await dbStudent.save()
+        console.log("student saved successfully")
+        return dbStudent
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
 
-// const getUserByName = async (user: any): Promise<any | void> => {
-//   try {
-//     if (!user) {
-//       return "please enter user name ";
-//     }
-//     const dbUser: any | undefined = await UserModel.find({ user_name: user });
-//     if (dbUser[0]) {
-//       return dbUser;
-//     } else {
-//       return "user name not found";
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     return err;
-//   }
-// };
-// export { createUser, getUserByName };
+export {
+    createStudent,
+}

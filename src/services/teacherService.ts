@@ -2,12 +2,10 @@ import { ITeacher, TeacherModel } from "../models/teacherModel"
 import bcrypt from 'bcrypt'
 const createTeacher = async (teacher:ITeacher):Promise<any | void> =>{
     try {
-        console.log(teacher)
         if(!teacher.user_name || !teacher.email || !teacher.password|| !teacher.class_name){
             return "All fields must be complete"
         }
         const hashedPassword = await bcrypt.hash(teacher.password,10)
-        
         const dbUser = new TeacherModel({
             user_name:teacher.user_name,
             email:teacher.email,

@@ -1,7 +1,24 @@
-// import { Request, Response } from "express";
-// import { UserModel } from "../models/userModel";
-// import { createUser,getUserByName } from "../services/userService";
+import { Request, Response, NextFunction } from "express";
+import { StudentModel } from "../models/studentModel"
+import { createStudent } from "../services/studentService"
 
+const studentRegister = async (req:Request ,res:Response) => {
+    try {
+        console.log("in controller")
+        const result :any = await createStudent(req.body)
+       if ( result instanceof  StudentModel){
+            res.status(201).json(result)
+        }
+        else{
+            res.status(404).json(result)
+        }
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+export {
+    studentRegister
+}
 // export const createNewUser = async (req: Request, res: Response) => {
 //     try {
 //         const result:any = await createUser(req.body)

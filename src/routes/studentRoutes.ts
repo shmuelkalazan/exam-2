@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { studentRegister } from "../controllers/studentController";
 const studentRouter = Router();
 
 //rgister student
-studentRouter.post("/register", ()=>{});
+studentRouter.post("/register", studentRegister);
 //
 
 

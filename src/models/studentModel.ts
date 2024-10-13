@@ -2,11 +2,11 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IStudent extends Document {
   _id: Types.ObjectId;
-  user_name: string;
+ user_name: string;
   email:string;
   password: string;
-  class_name:string;
-  exames: Types.ObjectId[];
+  class_name:string; 
+  exames_id: Types.ObjectId[];
 }
 
 const StudentSchema = new Schema<IStudent>({
@@ -28,9 +28,8 @@ const StudentSchema = new Schema<IStudent>({
   class_name: {
     type: String,
     required: [true, "class name is required"],
-    unique:true
   },
-  exames: {
+  exames_id: {
       type: [Schema.Types.ObjectId],
       ref:"exames",
       default:[]
