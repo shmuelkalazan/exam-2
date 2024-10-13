@@ -29,7 +29,7 @@ const login = async (user:loginDto):Promise<any | void>=> {
             {return "wrong password"}
         const token = await jwt.sign({
             user_name:loginUser.user_name ,
-            password:loginUser.password,
+            // password:loginUser.password,
             id:loginUser._id,
             job:job },
             process.env.TOKEN_SECRET ,{
