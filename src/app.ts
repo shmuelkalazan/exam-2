@@ -4,6 +4,7 @@ import connectDB from "./config/db";
 import teacherRouter from "./routes/teacherRoutes";
 import studentRouter from "./routes/studentRoutes";
 import gradesRouter from "./routes/gradesRouter";
+import loginRouter from "./routes/loginRouter";
 // const { specs, swaggerUi } = require('./swagger');
 
 dotenv.config();
@@ -17,7 +18,7 @@ connectDB();
 
 // Routes
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-
+app.use("/api/login",loginRouter)
 app.use("/api/teacher",teacherRouter );
 app.use("/api/student",studentRouter );
 app.use("/api/grade",gradesRouter );

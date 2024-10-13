@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-
 import { createTeacher } from "../services/teacherService"
 import { TeacherModel } from "../models/teacherModel";
 
