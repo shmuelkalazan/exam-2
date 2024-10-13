@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import {updateGradeService, createGrade, getAllGradesByClasIdService } from "../services/examesServise";
 import { IExam } from "../models/examModel";
 
-const createNewGrade = async (req:Request ,res:Response) => {
+const createNewGrade = async (req:Request ,res:Response,next:NextFunction) => {
     try {
         const result :string |IExam = await createGrade(req.body)
         res.status(201).json(result)
@@ -11,7 +11,7 @@ const createNewGrade = async (req:Request ,res:Response) => {
     }
 }
 
-const getAllGradesByClassId = async (req:Request ,res:Response) => {
+const getAllGradesByClassId = async (req:Request ,res:Response,next:NextFunction) => {
     try {
         const result :string |[IExam] = await getAllGradesByClasIdService(req.params.class_id)
         res.status(200).json(result)
@@ -20,7 +20,7 @@ const getAllGradesByClassId = async (req:Request ,res:Response) => {
     }
 }
 
-const updateGrade = async (req:Request ,res:Response) => {
+const updateGrade = async (req:Request ,res:Response,next:NextFunction) => {
     try {
         const result :string |IExam = await updateGradeService(req.body)
         res.status(203).json(result)
@@ -29,7 +29,7 @@ const updateGrade = async (req:Request ,res:Response) => {
     }
 }
 
-const getAvarage = async (req:Request ,res:Response) => {
+const getAvarage = async (req:Request ,res:Response,next:NextFunction) => {
     try {
         const result :string |IExam = await updateGradeService(req.body)
         res.status(203).json(result)

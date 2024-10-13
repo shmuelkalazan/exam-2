@@ -3,7 +3,7 @@ import { nextTick } from "process";
 const jwt = require("jsonwebtoken")
 const cookie = require("cookie-parser")
 
-const onlyTeachers =async (req:Request ,res:Response) => {
+const onlyTeachers =async (req:Request ,res:Response,next:NextFunction) => {
     try {
         const token =  (req as any).cookies.token as string  
         console.log(token)
@@ -11,7 +11,7 @@ const onlyTeachers =async (req:Request ,res:Response) => {
         if (userData.job != "teacher"){
             res.status(403).send("you are not teacher")
         }
-        nextTick
+        next()
     } catch (error) {
         console.log(error)
         res.status(401).send(error)
@@ -19,7 +19,7 @@ const onlyTeachers =async (req:Request ,res:Response) => {
 
 }
 
-const onlytTeachersAndStudents = async (req:Request ,res:Response) => {
+const onlytTeachersAndStudents = async (req:Request ,res:Response,next:NextFunction) => {
     try {
         const token =  (req as any).cookies.token as string  
         console.log(token)
@@ -27,7 +27,7 @@ const onlytTeachersAndStudents = async (req:Request ,res:Response) => {
         if (userData.job != "teacher" ||userData.job != "teacher" ){
             res.status(403).send("you are not teacher or student")
         }
-        nextTick
+        next()
     } catch (error) {
         console.log(error)
         res.status(401).send(error)

@@ -1,22 +1,22 @@
 import { Router } from "express";
-import { onlyTeachers } from "../middleware/authNiddleware";
+import { onlyTeachers, onlytTeachersAndStudents } from "../middleware/authNiddleware";
 import { createNewGrade, getAllGradesByClassId, updateGrade } from "../controllers/gradesController";
 const gradesRouter = Router();
 //get avarage
 gradesRouter.get("/",onlyTeachers, ()=>{});
 
 //add greade to student
-gradesRouter.post("/",createNewGrade);
+gradesRouter.post("/",onlyTeachers,createNewGrade);
 
 //get all grades to all the class
-gradesRouter.get("/:class_id",getAllGradesByClassId);
+gradesRouter.get("/:class_id",onlyTeachers,getAllGradesByClassId);
 
 //updat grade
-gradesRouter.put("/",updateGrade);
+gradesRouter.put("/",onlyTeachers,updateGrade);
 
 
-//getgrade
-gradesRouter.get("/:student_name", ()=>{});
+//get grade
+gradesRouter.get("/:student_name",onlytTeachersAndStudents, ()=>{});
 
 
 
