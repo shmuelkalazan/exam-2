@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import { login } from "../services/loginService";
-import { string } from "zod";
 
 const loginUser = async (req:Request ,res:Response) => {
     try {

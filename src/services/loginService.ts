@@ -1,7 +1,6 @@
 import { loginDto } from "../models/loginDto"
 import { IStudent, StudentModel } from "../models/studentModel"
 import { ITeacher, TeacherModel } from "../models/teacherModel"
-import {Jwt} from 'jsonwebtoken'
 
 const bcrypt = require("bcrypt")
 const jwt  = require('jsonwebtoken')
@@ -34,7 +33,7 @@ const login = async (user:loginDto):Promise<any | void>=> {
             id:loginUser._id,
             job:job },
             process.env.TOKEN_SECRET ,{
-                expiresIn:"30m"
+                expiresIn:"100m"
             });
     return [token]        
     } catch (err) {

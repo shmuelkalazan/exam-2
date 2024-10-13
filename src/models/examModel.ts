@@ -2,19 +2,16 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IExam extends Document {
   _id: Types.ObjectId;
-  student_name: string;
   profession:string;
   test_details:string;
-  test_grade:string;
+  test_grade:number;
   class_name:string;
   student_id: Types.ObjectId;
   teacher_id: Types.ObjectId;
 }
 
 const ExamSchema = new Schema<IExam>({
-    student_name: {
-      type: String,
-  },
+
   profession: {
     type: String,
   },
@@ -23,7 +20,7 @@ const ExamSchema = new Schema<IExam>({
     required:true
   },
   test_grade:{
-    type:String,
+    type:Number,
     required:true
   },
   class_name:{

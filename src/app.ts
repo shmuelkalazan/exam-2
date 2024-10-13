@@ -5,16 +5,17 @@ import teacherRouter from "./routes/teacherRoutes";
 import studentRouter from "./routes/studentRoutes";
 import gradesRouter from "./routes/gradesRouter";
 import loginRouter from "./routes/loginRouter";
+import cookieParser from "cookie-parser";
 // const { specs, swaggerUi } = require('./swagger');
 
-dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 1115;
+dotenv.config();
 
 // Middlewares
 app.use(express.json());
 connectDB();
+app.use(cookieParser())
 
 // Routes
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
@@ -24,6 +25,7 @@ app.use("/api/student",studentRouter );
 app.use("/api/grade",gradesRouter );
 
 
+const port = process.env.PORT || 1115;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
