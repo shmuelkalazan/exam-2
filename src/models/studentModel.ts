@@ -1,20 +1,20 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IStudent extends Document {
-  _id: Types.ObjectId;
- user_name: string;
+  _id: mongoose.Schema.Types.ObjectId;
+  user_name: string;
   email:string;
   password: string;
-  class_name:string; 
+  class_key:mongoose.Schema.Types.ObjectId; 
   exames_id: Types.ObjectId[];
 }
 
 const StudentSchema = new Schema<IStudent>({
   user_name: {
-      type: String,
-      required: [true, "name is required"],
-      minlength: [3, "Name is too short, please enter at least 3 characters"],
-      unique:true
+    type: String,
+    required: [true, "name is required"],
+    minlength: [3, "Name is too short, please enter at least 3 characters"],
+    unique:true
   },
   email: {
     type: String,
@@ -25,7 +25,7 @@ const StudentSchema = new Schema<IStudent>({
     type: String,
     required: [true, "password is required"],
   },
-  class_name: {
+  class_key: {
     type: String,
     required: [true, "class name is required"],
   },
@@ -34,7 +34,7 @@ const StudentSchema = new Schema<IStudent>({
       ref:"exames",
       default:[]
   }
-},{timestamps:true});
+});
 
 const StudentModel = mongoose.model<IStudent>("Students", StudentSchema);
 export {

@@ -5,7 +5,6 @@ import { TeacherModel } from "../models/teacherModel";
 
 const teacherRegister = async (req:Request ,res:Response) => {
     try {
-        console.log("in controller")
         const result :any = await createTeacher(req.body)
        if ( result instanceof  TeacherModel){
             res.status(201).json(result)

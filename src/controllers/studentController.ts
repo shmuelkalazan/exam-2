@@ -4,7 +4,6 @@ import { createStudent } from "../services/studentService"
 
 const studentRegister = async (req:Request ,res:Response) => {
     try {
-        console.log("in controller")
         const result :any = await createStudent(req.body)
        if ( result instanceof  StudentModel){
             res.status(201).json(result)

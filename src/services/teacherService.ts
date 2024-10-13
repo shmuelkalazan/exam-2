@@ -5,6 +5,10 @@ const createTeacher = async (teacher:ITeacher):Promise<any | void> =>{
         if(!teacher.user_name || !teacher.email || !teacher.password|| !teacher.class_name){
             return "All fields must be complete"
         }
+        const className:ITeacher|undefined|any = await TeacherModel.find({ class_name: teacher.class_name });             
+        if(className[0]){
+            return "class name alrady exist"        
+        }
         const hashedPassword = await bcrypt.hash(teacher.password,10)
         const dbUser = new TeacherModel({
             user_name:teacher.user_name,
@@ -15,6 +19,7 @@ const createTeacher = async (teacher:ITeacher):Promise<any | void> =>{
         await dbUser.save()
         console.log("teacher saved successfully")
         return dbUser
+        
     } catch (err) {
         console.log(err)
         throw err
