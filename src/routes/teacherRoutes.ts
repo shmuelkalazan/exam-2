@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { teacherRegister } from "../controllers/teacherController";
 const teacherRouter = Router();
 
 //register teacher
-teacherRouter.post("/register", ()=>{});
+teacherRouter.post("/register", teacherRegister);
 
 
 // //create new user

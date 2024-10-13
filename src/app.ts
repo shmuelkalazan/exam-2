@@ -18,9 +18,9 @@ connectDB();
 // Routes
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use("/api/teachers",teacherRouter );
-app.use("/api/students",studentRouter );
-app.use("/api/grades",gradesRouter );
+app.use("/api/teacher",teacherRouter );
+app.use("/api/student",studentRouter );
+app.use("/api/grade",gradesRouter );
 
 
 app.listen(port, () => {

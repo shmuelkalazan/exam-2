@@ -1,7 +1,28 @@
-// import { Request, Response, NextFunction } from "express";
-// import { PostModel } from "../models/postModel";
-// import {UserModel} from "../models/userModel";
-// import { createNewPost ,getallPosts} from "../services/postService";
+import { Request, Response, NextFunction } from "express";
+
+import { createTeacher } from "../services/teacherService"
+import { TeacherModel } from "../models/teacherModel";
+
+const teacherRegister = async (req:Request ,res:Response) => {
+    try {
+        console.log("in controller")
+        const result :any = await createTeacher(req.body)
+       if ( result instanceof  TeacherModel){
+            res.status(201).json(result)
+        }
+        else{
+            res.status(404).json(result)
+        }
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+export {
+    teacherRegister
+}
+
+
+
 
 // // Create a new post
 // const createPost = async (

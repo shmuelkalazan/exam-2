@@ -6,7 +6,7 @@ export interface ITeacher extends Document {
   email:string;
   password: string;
   class_name:string;
-  students: Types.ObjectId[];
+  students_id: Types.ObjectId[];
 }
 
 const TeacherSchema = new Schema<ITeacher>({
@@ -30,7 +30,7 @@ const TeacherSchema = new Schema<ITeacher>({
     required: [true, "class name is required"],
     unique:true
   },
-  students: {
+  students_id: {
       type: [Schema.Types.ObjectId],
       ref:"Students",
       default:[]
