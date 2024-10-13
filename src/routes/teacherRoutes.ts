@@ -1,11 +1,9 @@
 import { Router } from "express";
-// import { createNewUser, getAllUsers, getUserByUserName } from "../controllers/userController";
-
 const teacherRouter = Router();
+
 //register teacher
 teacherRouter.post("/register", ()=>{});
-// //add grade to studant
-teacherRouter.get("/", ()=>{});
+
 
 // //create new user
 // //vv
